@@ -1,17 +1,19 @@
 import h5py
 import numpy as np
 
-file_path_1 = 'ECD/h5/slider_depth.h5'
 file_path_2 = '4.h5'
 file_path_3 = 'T_4.h5'
 
 
 def see_h5(file_path):
-
+    """查看h5文件的属性组和数据集组"""
     with h5py.File(file_path, 'r') as f:
+        # 属性
         print("Attributes:")
         for key, val in f.attrs.items():
             print(key, val)
+
+        # 数据集
         print('Keys:', list(f.keys()))
         for key in f.keys():
             print(key)
@@ -21,7 +23,6 @@ def see_h5(file_path):
 
 
 def trans2ssl(file_path):
-
     # 打开输入文件和输出文件
     with h5py.File('./data4ssl/' + file_path, "r") as input_file, \
             h5py.File('./data4ssl/' + 'T_' + file_path, "w") as output_file:
